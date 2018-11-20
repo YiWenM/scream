@@ -1,23 +1,29 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <section>
+      <router-view></router-view>
+    </section>
+    <foots></foots>
   </div>
 </template>
 
 <script>
+import foots from './components/index'
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+   foots
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+html{font-size: 26.6666667vw}
+ *{padding: 0;margin:0;box-sizing: border-box;font-size: 0.14rem;}
+ img{display: inline-block}
+ ul,li{list-style: none}
+ a{text-decoration:none;}
+ body,html{width: 100%}
+ .clear{content:'';display: block;clear: both;}
+
 </style>

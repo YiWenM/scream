@@ -1,5 +1,7 @@
 <template>
-  
+  <div>
+  	furniture
+  </div>
 </template>
 
 <script>
