@@ -28,13 +28,13 @@ export default {
    .head{
       float: left;
       width: 100%;
-   	height:0.38rem;
-   	padding:0.13rem 0.12rem;
+   	  height:0.38rem;
+   	  padding:0.13rem 0.12rem;
       margin-bottom: .2rem;
    	img{
-   	   width:20%;
-         padding-top: .1rem;
-         height: 0.3rem;
+   	    width:20%;
+        padding-top: .1rem;
+        height: 0.3rem;
    	}
       .right{
          float: right;

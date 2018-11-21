@@ -10,7 +10,23 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+
+    
+    proxyTable: {
+        //https://m.wowdsgn.com/recommend
+        "/recommend":{
+            target:"https://m.wowdsgn.com/",
+            host:"m.wowdsgn.com/",
+            changeOrigin:true
+        },
+        //https://m.wowdsgn.com/itemdetail/skuInfos/9068?_=1542781388101
+        "/itemdetail":{
+            target:"https://m.wowdsgn.com/",
+            host:"m.wowdsgn.com/",
+            changeOrigin:true
+        }
+
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

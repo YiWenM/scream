@@ -11,6 +11,8 @@ import category from '../components/category'
 import login from '../components/login'
 import news from '../components/news'
 import myself from '../components/myself'
+import detail from '../components/detail'
+import cart from '../components/cart'
 
 export default new Router({
   routes: [
@@ -52,7 +54,10 @@ export default new Router({
     	path:'/myself',
     	component:myself
        },
-
+      {
+      path:'/detail/:id',
+      component:detail
+      },
       {
       path:"*",
       redirect:"/page/index"
