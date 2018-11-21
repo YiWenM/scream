@@ -8,7 +8,7 @@
           </div>
    	  </div>
    	  <ul class="nav">
-   	  	<li @click="handleClick(index)" v-for="data,index in dataList" class="active">{{data}}</li>
+   	  	<li @click="handleClick(index)" v-for="data,index in dataList" :class="current===index?'active':''">{{data}}</li>
    	  </ul>
         <component :is="who"></component>
    </div>
@@ -24,22 +24,27 @@ export default {
   data(){
     return{
       who:'recommend',
-      dataList:['推荐','家居','家具','活动']
+      dataList:['推荐','家居','家具','活动'],
+      current:0
     }
   },
   methods:{
     handleClick(datas){
       if (datas===0) {
+        this.current=0
         this.who ='recommend';
       }
      else if (datas===1) {
+       this.current=1
         this.who ='home';
       }
      else if (datas===2) {
         this.who ='furniture';
+         this.current=2
       }
      else {
         this.who ='active';
+         this.current=3
       }
     }
   },

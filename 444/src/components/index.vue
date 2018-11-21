@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div >
+    <div id="titles"></div>
   	<ul class="footer">
   		<router-link tag="li" activeClass="active" to="/page/index">
   			<p class="iconfont">&#xe62a;</p>
@@ -22,6 +23,7 @@
   			<p>我</p>
   		</router-link>	
   	</ul>
+     <a class="fixed iconfont" href="#titles">&#xe602;</a>
   </div>
 </template>
 
@@ -63,8 +65,21 @@ export default {
   }
    .active{
     p{
-     color: #000;
+      color: #000;
     }
+   }
+   .fixed{
+    position: fixed;
+    z-index: 999999;
+    display: inline-block;
+    width: .3rem;
+    height: .3rem;
+    top: 70%;
+    right: .05rem;
+    background: #ccc;
+    border-radius: 50%;
+    text-align: center;
+    line-height: .3rem
    }
 
 </style>

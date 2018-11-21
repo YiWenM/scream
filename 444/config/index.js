@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
         '/v2':{
-            arget:" https://m.wowdsgn.com",
+            target:" https://m.wowdsgn.com",
             host:"m.wowdsgn.com",
             changeOrigin:true
         }
