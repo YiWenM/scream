@@ -45,16 +45,18 @@ export default {
       // })
       this.$store.commit("detailId",this.idlist.parentProductId);
 
+      axios.get(`/itemdetail/spuInfos/${this.$store.state.detailId}?_=1542798329745`).then(res=>{
+        console.log(res)
+      }).catch(error=>{
+        console.log(error);
+      })
+
     }).catch(error=>{
      console.log(error);
     })
 
     //第二个详情请求地址：https://m.wowdsgn.com/itemdetail/spuInfos/7717?_=1542798329745
-    axios.get(`/itemdetail/spuInfos/${this.$store.state.detailId}?_=1542798329745`).then(res=>{
-      console.log(res)
-    }).catch(error=>{
-      console.log(error);
-    })
+   
   }
 }
 </script>
