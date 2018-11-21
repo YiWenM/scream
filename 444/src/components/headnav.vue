@@ -8,18 +8,47 @@
           </div>
    	  </div>
    	  <ul class="nav">
-   	  	<router-link to="/recommend" tag="li" activeClass="active">推荐</router-link>
-   	  	<router-link to="/furniture" tag="li" activeClass="active">家具</router-link>
-   	  	<router-link to="/home" tag="li" activeClass="active">家居</router-link>
-   	  	<router-link to="/active" tag="li" activeClass="active">活动</router-link>
+   	  	<li @click="handleClick(index)" v-for="data,index in dataList" class="active">{{data}}</li>
    	  </ul>
-        <router-view></router-view>
+        <component :is="who"></component>
    </div>
 </template>
 
 <script>
+  import recommend from './recommend'
+import furniture from './furniture'
+import active from './active'
+import home from './home'
 export default {
-  name:'headnav'
+  name:'headnav',
+  data(){
+    return{
+      who:'recommend',
+      dataList:['推荐','家居','家具','活动']
+    }
+  },
+  methods:{
+    handleClick(datas){
+      if (datas===0) {
+        this.who ='recommend';
+      }
+     else if (datas===1) {
+        this.who ='home';
+      }
+     else if (datas===2) {
+        this.who ='furniture';
+      }
+     else {
+        this.who ='active';
+      }
+    }
+  },
+  components:{
+    recommend,
+    home,
+    furniture,
+    active
+   }
 }
 </script>
 
@@ -58,7 +87,7 @@ export default {
       padding: 0 .1rem;
 		 li{
 		 	flex: 1;
-         margin: 0rem 0.13rem;
+       margin: 0rem 0.13rem;
 		 	font-size: 0.16rem;
 		 	text-align: center;
 

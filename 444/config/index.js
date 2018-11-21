@@ -13,8 +13,8 @@ module.exports = {
     proxyTable: {
         '/v2':{
             arget:" https://m.wowdsgn.com",
-                host:"m.wowdsgn.com",
-                changeOrigin:true
+            host:"m.wowdsgn.com",
+            changeOrigin:true
         }
 
     },

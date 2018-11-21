@@ -1,7 +1,7 @@
 <template>
   <div>
   	<ul class="footer">
-  		<router-link tag="li" activeClass="active" to="/pages/index">
+  		<router-link tag="li" activeClass="active" to="/page/index">
   			<p class="iconfont">&#xe62a;</p>
   			<p>首页</p>
   		</router-link>
@@ -46,6 +46,7 @@ export default {
     padding-top: .05rem;
     li{
     	flex: 1;
+      color: #ccc;
     	text-align: center;
     	height: 100%;
       .iconfont{
@@ -59,8 +60,11 @@ export default {
         font-size: .16rem;
       }
     }
-   }.active{
-
+  }
+   .active{
+    p{
+     color: #000;
+    }
    }
 
 </style>
