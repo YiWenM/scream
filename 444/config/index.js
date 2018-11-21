@@ -10,6 +10,7 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+<<<<<<< HEAD
 
     
     proxyTable: {
@@ -23,6 +24,12 @@ module.exports = {
         "/itemdetail":{
             target:"https://m.wowdsgn.com/",
             host:"m.wowdsgn.com/",
+=======
+    proxyTable: {
+        '/v2':{
+            target:" https://m.wowdsgn.com",
+            host:"m.wowdsgn.com",
+>>>>>>> 720a7d910ddbf27ab566359e6f6c7b9887e6effc
             changeOrigin:true
         }
 

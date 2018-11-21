@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div >
+    <div id="titles"></div>
   	<ul class="footer">
-  		<router-link tag="li" activeClass="active" to="/pages/index">
+  		<router-link tag="li" activeClass="active" to="/page/index">
   			<p class="iconfont">&#xe62a;</p>
   			<p>首页</p>
   		</router-link>
@@ -22,6 +23,7 @@
   			<p>我</p>
   		</router-link>	
   	</ul>
+     <a class="fixed iconfont" href="#titles">&#xe602;</a>
   </div>
 </template>
 
@@ -46,6 +48,7 @@ export default {
     padding-top: .05rem;
     li{
     	flex: 1;
+      color: #ccc;
     	text-align: center;
     	height: 100%;
       .iconfont{
@@ -59,8 +62,24 @@ export default {
         font-size: .16rem;
       }
     }
-   }.active{
-
+  }
+   .active{
+    p{
+      color: #000;
+    }
+   }
+   .fixed{
+    position: fixed;
+    z-index: 999999;
+    display: inline-block;
+    width: .3rem;
+    height: .3rem;
+    top: 70%;
+    right: .05rem;
+    background: #ccc;
+    border-radius: 50%;
+    text-align: center;
+    line-height: .3rem
    }
 
 </style>
