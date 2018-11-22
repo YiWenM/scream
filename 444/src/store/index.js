@@ -6,7 +6,9 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
 	state:{
 		detailTitle: "商品详情",
-		detailId :''
+		detailId :'',
+        detailinfo:[],
+        detailindex:''
 	},
 	actions:{
 	    bar(store,payload){
@@ -22,15 +24,21 @@ const store = new Vuex.Store({
 		detailId(state,payload){
 			state.detailId = payload;
 		},
+        detailinfo(state,payload){
+            state.detailinfo = payload;
+        },
+        detailindex(state,payload){
+            state.detailindex = payload;
+        },
    	 	bars(state,payload){
             console.log(payload)
             state.barList = payload;
             var mySwiper = new Swiper ('.swiper-container', {
-               slidesPerView: 3,
-               slidesPerGroup: 3,
-               pagination: {
-                 el: '.swiper-pagination',
-               },
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+                pagination: {
+                el: '.swiper-pagination',
+                },
                 autoplay: {
                    delay: 2500,
                    disableOnInteraction: false,

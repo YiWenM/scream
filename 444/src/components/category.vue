@@ -12,7 +12,6 @@
 	<ul>
 		<li v-for="data in list2">{{data}}</li>
 	</ul>
-	
   </div>
 </template>
 
@@ -42,6 +41,11 @@ export default {
 			"家饰",
 			"卫浴"
 		]
+  	}
+  },
+  methods:{
+  	handleClick(){
+  		this.$router.push('/sortdetail');
   	}
   }
 }

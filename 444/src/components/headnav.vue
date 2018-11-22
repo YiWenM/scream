@@ -1,6 +1,6 @@
 <template>
    <div class="clear">
-   	  <div class="head">
+   	  <div class="head" >
    	  	 <img src="../assets/titleView.png" alt="">
           <div class="right">
              <i class="iconfont">&#xe642;</i>

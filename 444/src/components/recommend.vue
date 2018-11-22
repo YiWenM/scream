@@ -29,7 +29,7 @@
   	     		      </div>
   	     		    </div>
   	     		  </div>  
-     		      <p class="all">查看全部<i class="iconfont ">&#xe603;</i></p> 
+     		      <p class="all" @click="handleClick()">查看全部<i class="iconfont ">&#xe603;</i></p> 
   	     	   </div>
   	        </div>
   	 </div>
@@ -54,10 +54,14 @@ export default {
   	return{
   		imgList:[],
   		barList:[]
-  	}
-
+    }
   },
-  	components: {
+  methods : {
+    handleClick(){
+
+    }
+  },
+  components: {
     'swipe': Swipe,
     'swipe-item':SwipeItem,
     'spinner':Spinner,
