@@ -12,14 +12,11 @@ import cart from '../components/cart'
 import sortdetail from '../components/sortdetail'
 import inputconnect from '../components/inputconnect'
 import search from '../components/search'
-<<<<<<< HEAD
 import things from '../components/things'
 import history from '../components/history'
-=======
 import sales from '../components/sales'
 import prices from '../components/prices'
 import newup from '../components/newup'
->>>>>>> bbb5889da52aed8965331df36caae1b81f78e8f7
 
 export default new Router({
   routes: [
@@ -58,16 +55,13 @@ export default new Router({
               {
               path:'/',
               component:history
-             }
-         ]
-<<<<<<< HEAD
-      }, 
-       {
-         path:"/more/:id",
-         component:things
-      } ,   
-=======
-      },
+              }
+        ]
+     }, 
+     {
+       path:"/more/:id",
+       component:things
+     } ,   
       {
           path:'/sortdetail',
           component:sortdetail,
@@ -86,7 +80,6 @@ export default new Router({
               }
           ]
       },
->>>>>>> bbb5889da52aed8965331df36caae1b81f78e8f7
       {
         path:"*",
         redirect:"/page/index"

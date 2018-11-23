@@ -51,11 +51,7 @@ export default {
           var prependNumber = 1;
           var swiper = new Swiper('.swiper-container', {
               slidesPerView: 3,
-<<<<<<< HEAD
-              spaceBetween: 30,
-=======
               spaceBetween: 15,
->>>>>>> bbb5889da52aed8965331df36caae1b81f78e8f7
               pagination: {
                 el: '.swiper-pagination',
                 clickable: true,

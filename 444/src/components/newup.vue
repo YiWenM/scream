@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$store.state.category[0]">
+  <div>
     <ul class="content">
       <li v-for="data in datalist">
         <img :src="data.productImg" alt="">
@@ -8,7 +8,7 @@
       </li>
     </ul>
   </div>
-  <div v-else="$store.state.category2[0]">
+  <!-- <div v-else="$store.state.category2[0]">
     <ul class="content">
       <li v-for="data in datalist1">
         <img :src="data.productImg" alt="">
@@ -16,7 +16,7 @@
         <p>￥{{data.sellPrice}}</p>
       </li>
     </ul>
-  </div>
+  </div> -->
 </template>
 
 <script>
