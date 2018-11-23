@@ -9,12 +9,24 @@ import news from '../components/news'
 import myself from '../components/myself'
 import detail from '../components/detail'
 import cart from '../components/cart'
+import inputconnect from '../components/inputconnect'
+import search from '../components/search'
 
 export default new Router({
   routes: [
      {
      	path:'/page/index',
-     	component:headnav
+     	component:headnav,
+      },
+     {
+        path:'/view',
+         component:inputconnect,
+         children:[
+             {
+              path:'search',
+              component:search
+             }
+         ]
       },
       {
     	path:'/pages/category',
