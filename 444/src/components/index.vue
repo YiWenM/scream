@@ -1,6 +1,5 @@
 <template>
-  <div >
-    <div id="titles"></div>
+  <div v-if="$store.state.isShow">
   	<ul class="footer">
   		<router-link tag="li" activeClass="active" to="/page/index">
   			<p class="iconfont">&#xe62a;</p>
@@ -23,13 +22,43 @@
   			<p>我</p>
   		</router-link>	
   	</ul>
-     <a class="fixed iconfont" href="#titles">&#xe602;</a>
+    <div v-if=" backTopShow">
+      <button type="button" class=" fixed iconfont" @click="backTop()">&#xe602;</button>
+    </div>  
   </div>
 </template>
 
 <script>
 export default {
-  name:'index'
+  name:'index',
+  data(){
+    return{
+      backTopShow:false
+    }
+  },
+  mounted(){
+      window.addEventListener('scroll', this.handleScroll);
+    },
+    methods:{
+      backTop() {
+        let back = setInterval(() => {
+          if(document.body.scrollTop||document.documentElement.scrollTop){
+            document.body.scrollTop-=100;
+            document.documentElement.scrollTop-=100;
+          }else {
+            clearInterval(back)
+          }
+        })
+      },
+      handleScroll(){
+        if (document.documentElement.scrollTop + document.body.scrollTop > 100) {
+          this.backTopShow=true;
+        }
+        else {
+          this.backTopShow=false;
+        }
+      }
+    }
 }
 </script>
 
@@ -76,10 +105,12 @@ export default {
     height: .3rem;
     top: 70%;
     right: .05rem;
-    background: #ccc;
+    border: 1px solid #ccc;
     border-radius: 50%;
     text-align: center;
-    line-height: .3rem
+    line-height: .3rem;
+    outline: none;
+    border: 0;
    }
 
 </style>

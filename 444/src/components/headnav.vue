@@ -4,9 +4,10 @@
    	  	 <img src="../assets/titleView.png" alt="">
           <div class="right">
              <i class="iconfont">&#xe642;</i>
-   	  	    <input type="text" placeholder="搜索我的尖叫好物">
+   	  	    <input type="text" placeholder="搜索我的尖叫好物" @click="put()" v-model="content">
           </div>
    	  </div>
+      <div id="titles"></div>
    	  <ul class="nav">
    	  	<li @click="handleClick(index)" v-for="data,index in dataList" :class="current===index?'active':''">{{data}}</li>
    	  </ul>
@@ -25,7 +26,8 @@ export default {
     return{
       who:'recommend',
       dataList:['推荐','家居','家具','活动'],
-      current:0
+      current:0,
+      content:''
     }
   },
   methods:{
@@ -46,14 +48,20 @@ export default {
         this.who ='active';
          this.current=3
       }
+    },
+     put(){
+      this.$router.push('/view');
+      this.$store.commit('put',false);
     }
+   
   },
   components:{
     recommend,
     home,
     furniture,
     active
-   }
+   },
+   
 }
 </script>
 
