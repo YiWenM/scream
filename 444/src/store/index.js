@@ -8,8 +8,8 @@ const store = new Vuex.Store({
 	state:{
 		detailTitle: "商品详情",
 		detailId :'',
-        detailinfo:[],
-		barList:[],
+     detailinfo:[],
+		 barList:[],
 	    homeList:[],
 	    homeList2:[],
 	    funitureList:[],
@@ -18,7 +18,14 @@ const store = new Vuex.Store({
 	    activeList2:[],
 	    isShow:true,
 	    search:[],
-	    shows:true	},
+	    shows:true,	
+      search2:[],
+      current:1,
+      keyword:'',
+      change:'onShelfTime',
+      doneList:[]
+      },
+
 	actions:{
 	    bar(store,payload){
           axios.get('/v2/page?pageId=1&tabId=1&_=1542764925216').then(res=>{
@@ -63,6 +70,18 @@ const store = new Vuex.Store({
 
 
         })
+      },
+      paths(store,payload){
+        store.state.current++
+        axios.get(`/product/search?keyword=${store.state.keyword}&sort=${store.state.change}&order=desc&currentPage=${store.state.current}&_=${new Date().getTime()}`).then(res=>{
+           store.commit('search1', res.data.data.products);
+
+        })
+      },
+      change(store,payload){
+        axios.get(`/product/search?keyword=${store.state.keyword}&sort=${store.state.change}&order=desc&currentPage=1&_=${new Date().getTime()}`).then(res=>{
+                    store.commit('search',res.data.data.products); 
+           })
       }
 	},
 
@@ -77,17 +96,17 @@ const store = new Vuex.Store({
             state.detailindex = payload;
         },
    	 	bars(state,payload){
+      /*  console.log(  payload)*/
             state.barList=payload;
-            var mySwiper = new Swiper ('.swiper-container', {
+            var mySwiper = new Swiper ('.swiper', {
                 slidesPerView: 3,
-                slidesPerGroup: 3,
+                slidesPerGroup : 1,
+                loop:false,
+                //slidesPerGroup: 3,
                 pagination: {
                 el: '.swiper-pagination',
-                },
-                autoplay: {
-                   delay: 2500,
-                   disableOnInteraction: false,
-                },
+                clickable: true
+                }
                 
             })  
         },
@@ -120,6 +139,28 @@ const store = new Vuex.Store({
         },
         shows(state,payload){
           state.shows = payload;
+        },
+        search2(state,payload){
+          state.search2 = payload;
+        },
+        del(state,payload){
+          state.search2 = payload;
+          state.search = payload;
+        },
+        search1(state,payload){
+          state.search=[...state.search,...payload];
+        },
+        keyword(state,payload){
+           state.keyword = payload;
+        },
+        change(state,payload){
+          state.change = payload;
+        },
+        delDone(state,payload){
+          state.doneList = payload;
+        },
+        done(state,payload){
+          state.doneList.push(payload) ;
         }
     }
 })

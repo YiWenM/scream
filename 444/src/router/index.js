@@ -16,6 +16,8 @@ import table from '../components/table'
 import cupboard from '../components/cupboard'
 import inputconnect from '../components/inputconnect'
 import search from '../components/search'
+import things from '../components/things'
+import history from '../components/history'
 
 export default new Router({
   routes: [
@@ -72,9 +74,17 @@ export default new Router({
              {
               path:'search',
               component:search
+             },
+              {
+              path:'/',
+              component:history
              }
          ]
-      },    
+      }, 
+       {
+         path:"/more/:id",
+         component:things
+      } ,   
       {
         path:"*",
         redirect:"/page/index"

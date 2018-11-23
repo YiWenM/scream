@@ -1,11 +1,15 @@
 <template>
-  <div>
-  	 <ul class="headnav">
-      <li v-for ="data,index in desc" :class="current===index?'active':''"  @click="sorts()">{{data}}</li> 
+  <div  v-infinite-scroll="loadMore"infinite-scroll-disabled="loading"
+  infinite-scroll-distance="10">
+  	 <ul class="headnav" v-if="search.length">
+      <li v-for ="data,index in desc"  :class="current===index?'active':''"  @click="sorts(index)">{{data}}</li> 
      </ul>
      <div v-if="search.length===0" class="nothing">这个真没有,看看我们为你推荐的商品吧！</div>
+      <ul class="headnav" v-if="search.length===0">
+        <li>尖叫好物</li> 
+      </ul>
      <ul v-if="search.length" class="products">
-        <li v-for="data in search" class="list">
+        <li v-for="data in search" class="list" @click="detail(data.productId)">
             <div>
               <img :src="data.productImg" alt="">
             </div>
@@ -14,11 +18,22 @@
             <p class="text">{{data.prizeOrSlogan}}</p>
         </li>
      </ul>
+     <ul v-if="search2.length" class="products">
+        <li v-for="data in search2" class="list" @click="detail(data.productId)">
+            <div>
+              <img :src="data.productImg" alt="">
+            </div>
+            <p class="text">{{data.productTitle}}</p>
+            <p>￥{{data.sellPrice}}</p>
+            <p class="text">{{data.prizeOrSlogan}}</p>
+        </li>
+      </ul>
   </div>
 </template>
 
 <script>
-
+import { InfiniteScroll } from 'mint-ui';
+import { Indicator } from 'mint-ui';
 import axios from "axios"
 export default {
   name : 'detail',
@@ -32,19 +47,44 @@ export default {
   mounted(){
      
   },
-  beforeDestroy(){
-    console.log(111)
-    this.$store.commit('shows',true);
-  },
   computed:{
     search(){  
       return this.$store.state.search;;
+    },
+    search2(){  
+      return this.$store.state.search2;;
     }
   },
   methods:{
-    sorts(){
-
+    sorts(data){
+        if (data===0) {
+           this.current =0
+         this.$store.commit('change','onShelfTime')
+          this.$store.dispatch('change')  
+        }
+        else if(data===1){
+          this.$store.commit('change','sales')
+           this.$store.dispatch('change')
+          this.current =1
+        }else{
+          this.$store.commit('change','price')
+           this.$store.dispatch('change')
+          this.current =2
+        } 
+    },
+    detail(data){
+      this.$router.push(`/detail/`+data);
+    },
+    loadMore(){
+      this.$store.dispatch('paths');
     }
+  },
+  beforeDestroy(){
+   this.$store.commit('put',false);
+  },
+  components:{
+    'indicator':Indicator,
+    'infiniteScroll':InfiniteScroll
   }
 }
 </script>
@@ -60,10 +100,10 @@ export default {
       border-bottom: 1px solid #f5f5f5;
       color: #808080;
      }
-  }
-  .active{
-     border-bottom: 2px solid #000;
-     color: #000;
+    .active{
+       border-bottom: 2px solid #000;
+       color: #000;
+    }
   }
  .products{
   width: 100%;
@@ -72,6 +112,7 @@ export default {
    border-right: 1px solid #f5f5f5;
   }
   .list{
+    height: 2.8rem;
     padding: 0 .1rem;
     border-bottom: 1px solid #f5f5f5;
     float: left;

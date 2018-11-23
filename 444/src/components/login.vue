@@ -38,7 +38,7 @@ export default {
   },
   mounted(){
   
-	axios.get("/recommend/cart?currentPage=1&_=1542777146544").then(res=>{
+	axios.get(`/recommend/cart?currentPage=${this.current}&_=1542777146544`).then(res=>{
 
 		this.datalist = res.data.data;
 		console.log(this.datalist)

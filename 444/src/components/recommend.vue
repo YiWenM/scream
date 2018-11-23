@@ -2,29 +2,28 @@
   <div class="main"  v-infinite-scroll="loadMore"infinite-scroll-disabled="loading"
   infinite-scroll-distance="10">
   	<swipe class="my-swipe">
-  	  <swipe-item class="slide1 imgs" v-for="data in imgList" :key="data.id">
+  	  <swipe-item class="slide1 imgs" v-for="data in imgList" :key="data.id" >
   	  	<img :src="data.bannerImgSrc" alt="">
   	  </swipe-item>
   	</swipe>
   	 <div v-for="data in $store.state.barList"class="bars">
 	  	 	 <p class="words" v-if="data.moduleName">{{data.moduleName}}</p>
 	  	 	  <p class="woord" v-if="data.moduleDescription">{{data.moduleDescription}}</p>
-  	        <div  v-if="data.moduleContent.banners">
+  	        <div  v-if="data.moduleContent.banners" @click="detail(data.moduleContent.banners[0].id)">
 	  	      <img v-if="data.moduleContent.banners[0]" :src="data.moduleContent.banners[0].bannerImgSrc" alt="">
   	        </div>
   	     <div v-if="data.moduleContent.products">
   	     <ul v-if="data.moduleContent.products.length<4">
-  	     	<li v-for="pros in data.moduleContent.products" v-if=" data.moduleContent.products.length<4">
+  	     	<li v-for="pros in data.moduleContent.products" v-if=" data.moduleContent.products.length<4" @click="detail(pros.productId)">
 	  	     	<img :src="pros.productImg" alt="">
 	  	     	<p>{{pros.productName}}</p>
 	  	     	<p>￥{{pros.sellPrice}}</p>
   	     	</li>
   	     </ul>
-  	     		<div class="swiper-container swiper">
   	     	<div v-if=" data.moduleContent.products.length>4">
   	     		<div class="swiper-container">
   	     		    <div class="swiper-wrapper">
-  	     		      <div class="swiper-slide" v-for="pros in data.moduleContent.products" :key="pros.id">
+  	     		      <div class="swiper-slide" v-for="pros in data.moduleContent.products" :key="pros.id" @click="detail(pros.productId)">
      		        	 <img :src="pros.productImg" alt="">
 	  	     	          <p >{{pros.productName}}</p>
 	  	     	          <p >￥{{pros.sellPrice}}</p>
@@ -32,10 +31,9 @@
   	     		    </div>
   	     		  </div> 
                  <div>
-     		         <p class="all" @click="handleClick()">查看全部<i class="iconfont ">&#xe603;</i></p>   	</div>
+     		         <p class="all" @click="handleClick(data.moduleContent.id)">查看全部<i class="iconfont ">&#xe603;</i></p>   	</div>
   	        </div>
           </div>
-        </div>
   	 </div>
   	 <br>
   	 <br>
@@ -62,11 +60,6 @@ export default {
       
     }
   },
-  methods : {
-    handleClick(){
-
-    }
-  },
   components: {
     'swipe': Swipe,
     'swipe-item':SwipeItem,
@@ -86,9 +79,10 @@ export default {
     }
   	    axios.get('/v2/page?pageId=1&tabId=1&_=1542764925216').then(res=>{
  	      this.imgList = res.data.data.modules[0].moduleContent.banners;
+        console.log(this.imgList)
 	  	    this.$nextTick(()=>{
 				var mySwiper = new Swiper ('.swiper-container', {
-				    loop: true,
+				    loop: false,
 				    pagination: {
 				      el: '.swiper-pagination',
 				     }
@@ -104,6 +98,16 @@ export default {
     loadMore(){
        this.$store.dispatch('otherList',this.num);
        this.num = 10+this.num;
+    },
+    handleClick(data){
+      console.log(data);
+      this.$router.push('/more/'+data);
+      this.$store.commit('put',false)
+    },
+    detail(data){
+      console.log(data)
+      console.log(111)
+      this.$router.push('/detail/'+data);
     }
     
   }

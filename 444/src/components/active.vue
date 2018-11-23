@@ -5,14 +5,14 @@
   	  	<img :src="data.bannerImgSrc" alt="">
   	  </swipe-item>
   	</swipe>
-     <div v-for="data in $store.state.activeList2" v-if="!data.moduleContent.products" class="activeList2">
+     <div v-for="data in $store.state.activeList2" v-if="!data.moduleContent.products" class="activeList2" @click="detail(data.moduleContent.banners[0].id)">
      	  <img :src="data.moduleContent.bannerImgSrc" alt="">
      </div>
   	  <div v-for="data in $store.state.activeList2" class="homeList2" v-if=" data.moduleContent.products">
   	  	 <p v-if="data.moduleName">{{data.moduleName}}</p>
   	  	 <div v-if="data.moduleDescription" class="desc">{{data.moduleDescription}}</div>
   	     <div class="bar">
-  	     	<div v-for="pros,index in data.moduleContent.products" v-if=" data.moduleContent.products &&index<6" class="bar2">
+  	     	<div v-for="pros,index in data.moduleContent.products" v-if=" data.moduleContent.products &&index<6" class="bar2" @click="detail(pros.productId)">
 	  	     	<img :src="pros.productImg" alt="">
 	  	     	<div class="text">{{pros.productName}}</div>
 	  	     	<div class="text">￥{{pros.sellPrice}}</div>
@@ -63,6 +63,11 @@ export default {
  	    Promise.all([axios.get('/v2/page?pageId=1&tabId=10010&_=1542864437566')]).then(res=>{
  	    	Indicator.close();
  	    })
+  },
+  methods:{
+    detail(data){
+      this.$router.push('/detail/'+data);
+    }
   }
 }
 </script>

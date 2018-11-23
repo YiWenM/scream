@@ -1,66 +1,66 @@
 <template>
   <div>
-    <div class="detailhead">
-        <h2>{{$store.state.detailTitle}}</h2>
-        <img :src="$store.state.detailinfo[$store.state.detailindex].productImg" alt="">
-        <p>{{$store.state.detailinfo[$store.state.detailindex].productTitle}}</p>
-        <p>{{$store.state.detailinfo[$store.state.detailindex].sellPrice}}</p>
-    </div>
-    <div v-for="data in detaillist" class="detailbody1">
-      <div v-if="data.content.indexOf('http') < 0">
-        <p>{{data.content}}</p>
-      </div>
-      <div v-if="data.content.indexOf('http') >= 0">
-        <img :src="data.content" alt="">
-      </div>
-    </div>
-
-    <div class="detailbody2">
-      <p>详情规格参数</p>
-      <ul>
-       <li v-for="data in datalist">
-         <span>{{data.attributeName}}</span>
-         <span class="size">{{data.attributeValueText}}</span>
-       </li> 
+    <!-- <div class="detailhead">
+       <h2>{{$store.state.detailTitle}}</h2>
+       <img :src="$store.state.detailinfo[$store.state.detailindex].productImg" alt="">
+       <p>{{$store.state.detailinfo[$store.state.detailindex].productTitle}}</p>
+       <p>{{$store.state.detailinfo[$store.state.detailindex].sellPrice}}</p>
+       </div> -->
+   <div v-for="data in detaillist" class="detailbody1">
+     <div v-if="data.content.indexOf('http') < 0">
+       <p>{{data.content}}</p>
+     </div>
+     <div v-if="data.content.indexOf('http') >= 0">
+       <img :src="data.content" alt="">
+     </div>
+   </div>
+   
+   <div class="detailbody2">
+     <p>详情规格参数</p>
+     <ul>
+      <li v-for="data in datalist">
+        <span>{{data.attributeName}}</span>
+        <span class="size">{{data.attributeValueText}}</span>
+      </li> 
+    </ul>
+   </div>
+   
+   <div class="assess">
+     <h2>
+       <p>评价晒图</p>
+       <span>COMMENT</span>
+     </h2>
+     <ul class="assessfoot">
+       <li v-for="data in assesslist">
+         <img :src="data.avatar" alt="">
+         <h5>
+             {{data.nickName}}
+             <span>{{data.publishTimeFormat}}</span>
+         </h5>
+         <p>{{data.comments}}</p>
+         <p>{{data.specAttributes[0]}}</p>
+       </li>
      </ul>
-    </div>
-
-    <div class="assess">
-      <h2>
-        <p>评价晒图</p>
-        <span>COMMENT</span>
-      </h2>
-      <ul class="assessfoot">
-        <li v-for="data in assesslist">
-          <img :src="data.avatar" alt="">
-          <h5>
-              {{data.nickName}}
-              <span>{{data.publishTimeFormat}}</span>
-          </h5>
-          <p>{{data.comments}}</p>
-          <p>{{data.specAttributes[0]}}</p>
-        </li>
-      </ul>
-    </div>
-
-
-    <div class="guesslist">
-      <h2>
-          猜你喜欢
-      </h2>
-      <ul>
-        <li v-for="data in guesslist">
-          <img :src="data.productImg" alt="">
-          <p>{{data.productTitle}}</p>
-          <p>
-              ￥{{data.sellPrice}}
-              <span class="delline">￥{{data.originalPrice}}</span>
-          </p>
-        </li>
-      </ul>
-      <h4>需要帮助<span style="color:red">周一至周五9:00~18:30</span></h4>
-    </div>
-    
+   </div>
+   
+   
+   <div class="guesslist">
+     <h2>
+         猜你喜欢
+     </h2>
+     <ul>
+       <li v-for="data in guesslist">
+         <img :src="data.productImg" alt="">
+         <p>{{data.productTitle}}</p>
+         <p>
+             ￥{{data.sellPrice}}
+             <span class="delline">￥{{data.originalPrice}}</span>
+         </p>
+       </li>
+     </ul>
+     <h4>需要帮助<span style="color:red">周一至周五9:00~18:30</span></h4>
+   </div>
+   
 
 
   </div>
@@ -84,12 +84,11 @@ export default {
   },
 
   mounted(){
-    
-    // console.log(this.$route);
-
+     console.log(this.$route.params.id)
     axios.get(`/itemdetail/skuInfos/${this.$route.params.id}?_=1542783587691`).then(res=>{
       // console.log(res.data.data.skuAttrPairs);
       this.datalist = res.data.data.skuAttrPairs;
+      console.log(this.datalist)
     }).catch(error=>{
       console.log(error);
     })
@@ -104,7 +103,8 @@ export default {
       this.idlist = res.data.data.skuInLists[0];
   
       this.guesslist = res.data.data.skuInLists;
-      console.log(this.guesslist);
+      console.log(this.guesslist)
+      console.log(this.idlist.parentProductId);
 
       this.$store.commit("detailId",this.idlist.parentProductId);
 
@@ -112,11 +112,9 @@ export default {
 
       //从store拿到ID，找详细信息
       axios.get(`/itemdetail/spuInfos/${this.$store.state.detailId}?_=1542798329745`).then(res=>{
-        // console.log(res.data.data.itemDetailIntroVoList[0].content);
         this.detaillist = res.data.data.itemDetailIntroVoList;
         this.assesslist = res.data.data.productCommentList;
-        // console.log(this.assesslist);
-
+     
       }).catch(error=>{
         console.log(error);
       })
