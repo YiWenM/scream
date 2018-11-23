@@ -7,6 +7,8 @@ import store from './store'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI); //注册mobile UI
+
+
 Vue.config.productionTip = false;
 /* eslint-disable no-new */
 new Vue({

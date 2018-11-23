@@ -8,17 +8,17 @@ const store = new Vuex.Store({
 	state:{
 		detailTitle: "商品详情",
 		detailId :'',
-    barList:[],
-    homeList:[],
-    homeList2:[],
-    funitureList:[],
-    funitureList2:[],
-    activeList:[],
-    activeList2:[],
-    isShow:true,
-    search:[],
-    shows:true
-	},
+        detailinfo:[],
+		barList:[],
+	    homeList:[],
+	    homeList2:[],
+	    funitureList:[],
+	    funitureList2:[],
+	    activeList:[],
+	    activeList2:[],
+	    isShow:true,
+	    search:[],
+	    shows:true	},
 	actions:{
 	    bar(store,payload){
           axios.get('/v2/page?pageId=1&tabId=1&_=1542764925216').then(res=>{
@@ -70,14 +70,20 @@ const store = new Vuex.Store({
 		detailId(state,payload){
 			state.detailId = payload;
 		},
+        detailinfo(state,payload){
+            state.detailinfo = payload;
+        },
+        detailindex(state,payload){
+            state.detailindex = payload;
+        },
    	 	bars(state,payload){
             state.barList=payload;
             var mySwiper = new Swiper ('.swiper-container', {
-               slidesPerView: 3,
-               slidesPerGroup: 3,
-               pagination: {
-                 el: '.swiper-pagination',
-               },
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+                pagination: {
+                el: '.swiper-pagination',
+                },
                 autoplay: {
                    delay: 2500,
                    disableOnInteraction: false,

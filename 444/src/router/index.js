@@ -9,48 +9,76 @@ import news from '../components/news'
 import myself from '../components/myself'
 import detail from '../components/detail'
 import cart from '../components/cart'
+import sortdetail from '../components/sortdetail'
+import sofa from '../components/sofa'
+import chair from '../components/chair'
+import table from '../components/table'
+import cupboard from '../components/cupboard'
 import inputconnect from '../components/inputconnect'
 import search from '../components/search'
 
 export default new Router({
   routes: [
+     { 
+        path:'/page/index',
+       	component:headnav
+     },
      {
-     	path:'/page/index',
-     	component:headnav,
-      },
+      	path:'/pages/category',
+      	component:category
+     },
      {
+      	path:'/cart',
+      	component:login
+     },
+     {
+      	path:'/news',
+      	component:news
+     },
+     {
+      	path:'/myself',
+      	component:myself
+     },
+     {
+        path:'/detail/:id',
+        component:detail
+     },
+     {
+        path:'/sortdetail',
+        component:sortdetail,
+        children:[
+            {
+              path : 'sofa',
+              component : sofa
+            },
+            {
+              path : 'chair',
+              component : chair
+            },
+            {
+              path : 'cupboard',
+              component : cupboard
+            },
+            {
+              path : 'table',
+              component : table
+            }
+         ]
+       },
+ 	     {
         path:'/view',
-         component:inputconnect,
-         children:[
+        component:inputconnect,
+        children:[
              {
               path:'search',
               component:search
              }
          ]
-      },
+      },    
       {
-    	path:'/pages/category',
-    	component:category
-       },
-       {
-    	path:'/cart',
-    	component:login
-       },
-       {
-    	path:'/news',
-    	component:news
-       },
-       {
-    	path:'/myself',
-    	component:myself
-       },
-      {
-      path:'/detail/:id',
-      component:detail
-      },
-      {
-      path:"*",
-      redirect:"/page/index"
-    }
-  ]
-})
+        path:"*",
+        redirect:"/page/index"
+     }    
+    ]
+   })
+

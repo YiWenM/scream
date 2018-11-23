@@ -20,6 +20,7 @@
 	  	     	<p>￥{{pros.sellPrice}}</p>
   	     	</li>
   	     </ul>
+  	     		<div class="swiper-container swiper">
   	     	<div v-if=" data.moduleContent.products.length>4">
   	     		<div class="swiper-container">
   	     		    <div class="swiper-wrapper">
@@ -29,10 +30,12 @@
 	  	     	          <p >￥{{pros.sellPrice}}</p>
   	     		      </div>
   	     		    </div>
-  	     		  </div>  
-     		      <p class="all"><span>查看全部</span><i class="iconfont ">&#xe603;</i></p> 
-  	     	   </div>
+  	     		  </div> 
+                 <div>
+     		         <p class="all" @click="handleClick()">查看全部<i class="iconfont ">&#xe603;</i></p>   	</div>
   	        </div>
+          </div>
+        </div>
   	 </div>
   	 <br>
   	 <br>
@@ -57,10 +60,14 @@ export default {
   		imgList:[],
   		num:11
       
-  	}
-
+    }
   },
-  	components: {
+  methods : {
+    handleClick(){
+
+    }
+  },
+  components: {
     'swipe': Swipe,
     'swipe-item':SwipeItem,
     'spinner':Spinner,
