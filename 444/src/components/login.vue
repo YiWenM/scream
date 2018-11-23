@@ -36,9 +36,12 @@ export default {
   		current:1
   	}
   },
+ //  beforeDestroy(){
+	// this.$store.commit("put",false);
+ //  },
   mounted(){
   
-	axios.get("/recommend/cart?currentPage=1&_=1542777146544").then(res=>{
+	axios.get(`/recommend/cart?currentPage=${this.current}&_=1542777146544`).then(res=>{
 
 		this.datalist = res.data.data;
 		console.log(this.datalist)
@@ -116,14 +119,14 @@ export default {
 		li{
 			float:left;
 			width:50%;
-			height:3.5rem;
+			height:3rem;
 			padding:.2rem;
 			border-bottom: 1px solid #ccc;
 			
 			img{
 				width:100%;
-				height:1.8rem;
-				margin-bottom: .2rem;
+				height:1.6rem;
+				margin-bottom: .1rem;
 			}
 			p{
 				color:#aaa;

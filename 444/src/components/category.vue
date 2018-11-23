@@ -2,15 +2,15 @@
   <div>
   	<header>
         <i class="iconfont">&#xe642;</i>
-	  	<input type="text" placeholder="搜索我的尖叫好物">
+	  	<input tsype="text" placeholder="搜索我的尖叫好物">
     </header>
 	<img src="/static/categoryImg/furniture.png" alt="">
 	<ul>
-		<li v-for="data in list1" @click="handleClick()">{{data}}<i class="iconfont ">&#xe60c;</i></li>
+		<li v-for="data,index in $store.state.categorylist1" @click="handleClick(index,data)">{{data}}<i class="iconfont ">&#xe60c;</i></li>
 	</ul>
 	<img src="/static/categoryImg/household.png" alt="">
 	<ul>
-		<li v-for="data in list2">{{data}}</li>
+		<li v-for="data,index in list2" @click="handleClick(index,data)">{{data}}</li>
 	</ul>
   </div>
 </template>
@@ -21,17 +21,6 @@ export default {
   name : 'category',
   data(){
   	return {
-  		list1 : [
-	  		"沙发",
-	  		"椅凳",
-			"桌几",
-			"床",
-			"柜架",
-			"餐桌",
-			"茶几和边桌",
-			"书桌",
-			"隔断",
-		],
 		list2 : [
 			"灯具",
 			"用餐",
@@ -44,8 +33,10 @@ export default {
   	}
   },
   methods:{
-  	handleClick(){
-  		this.$router.push('/sortdetail');
+  	handleClick(index,data){
+  		this.$router.push('/sortdetail/newup');
+  		this.$store.commit("categoryIndex",[index,data]);
+  		console.log(index,data);
   	}
   }
 }

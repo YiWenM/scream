@@ -2,9 +2,9 @@
   <div>
     <div class="detailhead">
         <h2>{{$store.state.detailTitle}}</h2>
-        <img :src="$store.state.detailinfo[$store.state.detailindex].productImg" alt="">
+        <!-- <img :src="$store.state.detailinfo[$store.state.detailindex].productImg" alt="">
         <p>{{$store.state.detailinfo[$store.state.detailindex].productTitle}}</p>
-        <p>{{$store.state.detailinfo[$store.state.detailindex].sellPrice}}</p>
+        <p>{{$store.state.detailinfo[$store.state.detailindex].sellPrice}}</p> -->
     </div>
     <div v-for="data in detaillist" class="detailbody1">
       <div v-if="data.content.indexOf('http') < 0">
@@ -28,7 +28,6 @@
     <div class="assess">
       <h2>
         <p>评价晒图</p>
-        <span>COMMENT</span>
       </h2>
       <ul class="assessfoot">
         <li v-for="data in assesslist">
@@ -126,7 +125,10 @@ export default {
      console.log(error);
     })
    
-  }
+  },
+  // beforeDestroy(){
+  //   this.$store.commit("put",true);
+  // }
 }
 </script>
 

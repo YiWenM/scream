@@ -1,20 +1,22 @@
 <template>
   <div>
-    sortdetail
+    <h2>{{$store.state.category[1]}}</h2>
     <!-- 轮播 -->
     <div class="swiper-container">
        <div class="swiper-wrapper">
-         <router-link class="swiper-slide" to="/sortdetail/sofa" activeClass="active">沙发</router-link>
-         <router-link class="swiper-slide" to="/sortdetail/chair" activeClass="active">椅凳</router-link>
-         <router-link class="swiper-slide" to="/sortdetail/cupboard" activeClass="active">柜架</router-link>
-         <router-link class="swiper-slide" to="/sortdetail/table" activeClass="active">餐桌</router-link>
+          <!-- to="'/sortdetail/' + '/newup'" -->
+         <div class="swiper-slide" v-for="data,index in $store.state.categorylist1" @click="handleClick(index,data)">{{data}}</div>
        </div>
     </div>
-    <div>
-      <router-link></router-link>
-    </div>
-
-    <router-view></router-view>
+    <div class="centers">
+          <router-link to="/sortdetail/newup" activeClass="active" tag="p">上新</router-link>
+          <router-link to="/sortdetail/sales" activeClass="active" tag="p">销量</router-link>
+          <router-link to="/sortdetail/prices" activeClass="active" tag="p">价格</router-link>
+    </div> 
+  
+    <section>
+      <router-view></router-view>
+    </section>
 
   </div>
 </template>
@@ -33,8 +35,13 @@ export default {
   },
 
   methods : {
-  	handClick(){
-  	
+  	handleClick(index,data){
+  	   this.$router.push("/sortdetail/newup");
+       this.$store.commit("categoryIndex2",[index,data]);
+       console.log(index,data);   
+       console.log(this.$store.state.category2[1])
+       console.log(this.$store.state.category2[0])
+
   	}
   },
 
@@ -44,8 +51,7 @@ export default {
           var prependNumber = 1;
           var swiper = new Swiper('.swiper-container', {
               slidesPerView: 3,
-              centeredSlides: true,
-              spaceBetween: 30,
+              spaceBetween: 15,
               pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
@@ -57,9 +63,18 @@ export default {
 
 <style scoped lang="scss">
 
+  h2{
+    margin-top: .1rem;
+    font-size:.18rem;
+    line-height: .2rem;
+    text-align: center;
+    font-weight: 100;
+  }
   .swiper-container {
+        padding-left: .15rem;
         height: 1rem;
-        margin: .2rem auto;
+        margin: .1rem auto;
+        margin-bottom: .2rem;
         background: url('/static/categoryImg/10.jpg');
 
 
@@ -68,7 +83,7 @@ export default {
           text-align: center;
           font-size: 18px;
           height:.8rem;
-          width:.85rem!important;
+          width:.8rem!important;
           line-height: .7rem;
           opacity:.5;
           color:white;
@@ -76,7 +91,20 @@ export default {
           margin-top: .1rem;
         }
   }
-  .active{
-    color:red;
-  }
+  .centers{
+        display:flex;
+        justify-content:space-around;
+        border-bottom:1px solid #ccc;
+        margin-top: -.1rem;
+        p{
+          width:.5rem;
+          text-align: center;
+          color:black;
+          line-height: .3rem;
+          /*height:.3rem;*/
+        }
+        .active{
+          border-bottom: 3px solid #000;
+        }
+      }
 </style>

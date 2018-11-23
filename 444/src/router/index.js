@@ -10,12 +10,11 @@ import myself from '../components/myself'
 import detail from '../components/detail'
 import cart from '../components/cart'
 import sortdetail from '../components/sortdetail'
-import sofa from '../components/sofa'
-import chair from '../components/chair'
-import table from '../components/table'
-import cupboard from '../components/cupboard'
 import inputconnect from '../components/inputconnect'
 import search from '../components/search'
+import sales from '../components/sales'
+import prices from '../components/prices'
+import newup from '../components/newup'
 
 export default new Router({
   routes: [
@@ -43,28 +42,6 @@ export default new Router({
         path:'/detail/:id',
         component:detail
      },
-     {
-        path:'/sortdetail',
-        component:sortdetail,
-        children:[
-            {
-              path : 'sofa',
-              component : sofa
-            },
-            {
-              path : 'chair',
-              component : chair
-            },
-            {
-              path : 'cupboard',
-              component : cupboard
-            },
-            {
-              path : 'table',
-              component : table
-            }
-         ]
-       },
  	     {
         path:'/view',
         component:inputconnect,
@@ -74,7 +51,25 @@ export default new Router({
               component:search
              }
          ]
-      },    
+      },
+      {
+          path:'/sortdetail',
+          component:sortdetail,
+          children:[
+              {
+                path : 'sales',
+                component : sales
+              },
+              {
+                path : 'newup',
+                component : newup
+              },
+              {
+                path : 'prices',
+                component : prices
+              }
+          ]
+      },
       {
         path:"*",
         redirect:"/page/index"
