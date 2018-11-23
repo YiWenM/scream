@@ -8,6 +8,7 @@ const store = new Vuex.Store({
 	state:{
 		detailTitle: "商品详情",
 		detailId :'',
+<<<<<<< HEAD
      detailinfo:[],
 		 barList:[],
 	    homeList:[],
@@ -26,6 +27,23 @@ const store = new Vuex.Store({
       doneList:[]
       },
 
+=======
+    detailinfo:[],
+		barList:[],
+    homeList:[],
+    homeList2:[],
+    funitureList:[],
+    funitureList2:[],
+    activeList:[],
+    activeList2:[],
+    isShow:true,
+    search:[],
+    shows:true,
+    category:[],
+    category2 :[],
+    categorylist1 : ["柜架","灯具","用餐","烹饪","纺织品","家饰","书桌","卫浴","时尚生活"]
+  },
+>>>>>>> bbb5889da52aed8965331df36caae1b81f78e8f7
 	actions:{
 	    bar(store,payload){
           axios.get('/v2/page?pageId=1&tabId=1&_=1542764925216').then(res=>{
@@ -89,6 +107,7 @@ const store = new Vuex.Store({
 		detailId(state,payload){
 			state.detailId = payload;
 		},
+<<<<<<< HEAD
         detailinfo(state,payload){
             state.detailinfo = payload;
         },
@@ -163,6 +182,66 @@ const store = new Vuex.Store({
           state.doneList.push(payload) ;
         }
     }
+=======
+    detailinfo(state,payload){
+        state.detailinfo = payload;
+    },
+    detailindex(state,payload){
+        state.detailindex = payload;
+    },
+    categoryIndex(state,payload){
+        state.category = payload;
+    },
+    categoryIndex2(state,payload){
+        state.category2 = payload;
+    },
+ 	 	bars(state,payload){
+          state.barList=payload;
+          var mySwiper = new Swiper ('.swiper-container', {
+              slidesPerView: 3,
+              slidesPerGroup: 3,
+              pagination: {
+              el: '.swiper-pagination',
+              },
+              autoplay: {
+                 delay: 2500,
+                 disableOnInteraction: false,
+              },
+              
+          })  
+      },
+      otherList(state,payload){
+         state.barList=[...state.barList,...payload]; 
+      },
+      homebar(state,payload){
+          state.homeList = payload;
+      },
+      homeList(state,payload){
+          state.homeList2 = payload;
+      },
+      funiturebar(state,payload){
+          state.funitureList = payload;
+      },
+      funitureList(state,payload){
+          state.funitureList2 = payload;
+      },
+      activebar(state,payload){
+          state.activeList = payload;
+      },
+       activeList(state,payload){
+          state.activeList2 = payload;
+      },
+      put(state,payload){
+        state.isShow = payload;
+      },
+      search(state,payload){
+        state.search = payload;
+      },
+      shows(state,payload){
+        state.shows = payload;
+      }
+  }
+>>>>>>> bbb5889da52aed8965331df36caae1b81f78e8f7
 })
 
 

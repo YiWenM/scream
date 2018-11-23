@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
     <!-- <div class="detailhead">
        <h2>{{$store.state.detailTitle}}</h2>
        <img :src="$store.state.detailinfo[$store.state.detailindex].productImg" alt="">
@@ -61,6 +62,68 @@
      <h4>需要帮助<span style="color:red">周一至周五9:00~18:30</span></h4>
    </div>
    
+=======
+    <div class="detailhead">
+        <h2>{{$store.state.detailTitle}}</h2>
+        <!-- <img :src="$store.state.detailinfo[$store.state.detailindex].productImg" alt="">
+        <p>{{$store.state.detailinfo[$store.state.detailindex].productTitle}}</p>
+        <p>{{$store.state.detailinfo[$store.state.detailindex].sellPrice}}</p> -->
+    </div>
+    <div v-for="data in detaillist" class="detailbody1">
+      <div v-if="data.content.indexOf('http') < 0">
+        <p>{{data.content}}</p>
+      </div>
+      <div v-if="data.content.indexOf('http') >= 0">
+        <img :src="data.content" alt="">
+      </div>
+    </div>
+
+    <div class="detailbody2">
+      <p>详情规格参数</p>
+      <ul>
+       <li v-for="data in datalist">
+         <span>{{data.attributeName}}</span>
+         <span class="size">{{data.attributeValueText}}</span>
+       </li> 
+     </ul>
+    </div>
+
+    <div class="assess">
+      <h2>
+        <p>评价晒图</p>
+      </h2>
+      <ul class="assessfoot">
+        <li v-for="data in assesslist">
+          <img :src="data.avatar" alt="">
+          <h5>
+              {{data.nickName}}
+              <span>{{data.publishTimeFormat}}</span>
+          </h5>
+          <p>{{data.comments}}</p>
+          <p>{{data.specAttributes[0]}}</p>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="guesslist">
+      <h2>
+          猜你喜欢
+      </h2>
+      <ul>
+        <li v-for="data in guesslist">
+          <img :src="data.productImg" alt="">
+          <p>{{data.productTitle}}</p>
+          <p>
+              ￥{{data.sellPrice}}
+              <span class="delline">￥{{data.originalPrice}}</span>
+          </p>
+        </li>
+      </ul>
+      <h4>需要帮助<span style="color:red">周一至周五9:00~18:30</span></h4>
+    </div>
+    
+>>>>>>> bbb5889da52aed8965331df36caae1b81f78e8f7
 
 
   </div>
@@ -124,7 +187,10 @@ export default {
      console.log(error);
     })
    
-  }
+  },
+  // beforeDestroy(){
+  //   this.$store.commit("put",true);
+  // }
 }
 </script>
 
