@@ -27,7 +27,7 @@
 
     <div class="assess">
       <h2>
-        <p>评价晒图</p>
+        评价晒图
       </h2>
       <ul class="assessfoot">
         <li v-for="data in assesslist">
@@ -48,7 +48,7 @@
           猜你喜欢
       </h2>
       <ul>
-        <li v-for="data in guesslist">
+        <li v-for="data in guesslist" @click="guessClick(data.productId)">
           <img :src="data.productImg" alt="">
           <p>{{data.productTitle}}</p>
           <p>
@@ -81,10 +81,15 @@ export default {
       guesslist:[]
   	}
   },
+  methods:{
+     guessClick(id){
+        console.log(111);
+        this.$router.push('/detail/' + id);
+     }
+  },
 
   mounted(){
     
-    // console.log(this.$route);
 
     axios.get(`/itemdetail/skuInfos/${this.$route.params.id}?_=1542783587691`).then(res=>{
       // console.log(res.data.data.skuAttrPairs);
@@ -94,16 +99,13 @@ export default {
     })
 
 
-
-    //https://m.wowdsgn.com/recommend/item?skuId=9068&_=1542849053065
-
     //将Id存到store中
     axios.get(`/recommend/item?skuId=${this.$route.params.id}&_=1542795192332`).then(res=>{
     
       this.idlist = res.data.data.skuInLists[0];
   
       this.guesslist = res.data.data.skuInLists;
-      console.log(this.guesslist);
+      console.log(this.guesslist[0].productId);
 
       this.$store.commit("detailId",this.idlist.parentProductId);
 
@@ -125,10 +127,11 @@ export default {
      console.log(error);
     })
    
-  },
+  }
   // beforeDestroy(){
   //   this.$store.commit("put",true);
   // }
+  
 }
 </script>
 
@@ -198,15 +201,14 @@ export default {
       height:.4rem;
       background: #eee;
       text-align: center;
-      p{
-        font-size: .18rem;
+      font-size: .18rem;
+      line-height: .4rem;
       }
       span{
         display:block;
         margin-top: -.2rem;
         background: #eee;
       }
-    }
     .assessfoot{
       padding:.2rem;
       li{
@@ -250,6 +252,7 @@ export default {
       font-size: .16rem;
       line-height: .6rem;
       background: #eee;
+      text-align: center;
     }
     ul{
       border-top:1px solid #ccc;
@@ -268,7 +271,13 @@ export default {
           color:#9f8fb3;
         }
         p{
-          text-align: center;
+          margin-left: .2rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width:1.6rem;
+          line-height: .25rem;
+
           .delline{
             text-decoration: line-through;
             color:#9f8fb3;

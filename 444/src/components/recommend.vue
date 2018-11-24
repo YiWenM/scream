@@ -32,7 +32,7 @@
   	     		    </div>
   	     		  </div> 
                  <div>
-     		         <p class="all" @click="handleClick()">查看全部<i class="iconfont ">&#xe603;</i></p>   	</div>
+     		         <p class="all">查看全部<i class="iconfont ">&#xe603;</i></p>   	</div>
   	        </div>
           </div>
         </div>
@@ -51,9 +51,9 @@
  import axios from 'axios';
  import { Spinner } from 'mint-ui';
  require('vue-swipe/dist/vue-swipe.css');
-import { Swipe, SwipeItem } from 'vue-swipe';
+ import { Swipe, SwipeItem } from 'vue-swipe';
  import  'swiper/dist/css/swiper.min.css';
-export default {
+ export default {
   name:'recommend',
   data(){
   	return{
@@ -64,7 +64,7 @@ export default {
   },
   methods : {
     handleClick(){
-
+        
     }
   },
   components: {

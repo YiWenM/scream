@@ -5,7 +5,7 @@
 	<nav>
 		<p>您的购物车还是空的</p>
 		<span>看看收藏</span>
-		<span>去逛逛</span>
+		<span @click="goClick()">去逛逛</span>
 	</nav>
 	<div class="recommend">- 为你推荐 - </div>
 	<ul v-infinite-scroll="loadMore"
@@ -70,6 +70,9 @@ export default {
 		}).catch(error=>{
 			console.log(error);
 		})
+  	},
+  	goClick(){
+  		this.$router.push("/page/index");
   	}
   }
 }

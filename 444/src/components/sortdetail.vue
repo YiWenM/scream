@@ -37,10 +37,7 @@ export default {
   methods : {
   	handleClick(index,data){
   	   this.$router.push("/sortdetail/newup");
-       this.$store.commit("categoryIndex2",[index,data]);
-       console.log(index,data);   
-       console.log(this.$store.state.category2[1])
-       console.log(this.$store.state.category2[0])
+       this.$store.commit("categoryIndex",[index,data]);
 
   	}
   },

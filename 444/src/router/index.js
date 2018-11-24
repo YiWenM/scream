@@ -16,6 +16,7 @@ import sales from '../components/sales'
 import prices from '../components/prices'
 import newup from '../components/newup'
 
+
 export default new Router({
   routes: [
      { 
@@ -75,5 +76,5 @@ export default new Router({
         redirect:"/page/index"
      }    
     ]
-   })
+  })
 

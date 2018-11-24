@@ -1,16 +1,7 @@
 <template>
-  <div v-if="$store.state.category[0]">
+  <div>
     <ul class="content">
-      <li v-for="data in datalist">
-        <img :src="data.productImg" alt="">
-        <p>{{data.productTitle}}</p>
-        <p>￥{{data.sellPrice}}</p>
-      </li>
-    </ul>
-  </div>
-  <div v-else="$store.state.category2[0]">
-    <ul class="content">
-      <li v-for="data in datalist1">
+      <li v-for="data in datalist" @click="handleClick(data.productId)">
         <img :src="data.productImg" alt="">
         <p>{{data.productTitle}}</p>
         <p>￥{{data.sellPrice}}</p>
@@ -33,23 +24,25 @@ export default {
   },
 
   methods : {
-  	handClick(){
-  	
+  	handleClick(id){
+  	   this.$router.push("/detail/"+id);
   	}
   },
   mounted(){
-    
+   
     axios.get(`/pages/category/${this.$store.state.category[0]+24}?pageNumber=1&orderBy=onShelfTime&sort=desc&_=1542949069315`).then(res=>{
 
       this.datalist = res.data.data.products;
+      console.log(this.datalist[0].productId);
     }).catch(error=>{
       console.log(error);
     })
 
-    axios.get(`/pages/category/${this.$store.state.category2[0]+24}?pageNumber=1&orderBy=onShelfTime&sort=desc&_=1542949069315`).then(res=>{
+  },
+  updated(){
+    axios.get(`/pages/category/${this.$store.state.category[0]+24}?pageNumber=1&orderBy=onShelfTime&sort=desc&_=1542949069315`).then(res=>{
 
-      this.datalist1 = res.data.data.products;
-      // console.log(this.datalist1);
+      this.datalist = res.data.data.products;
     }).catch(error=>{
       console.log(error);
     })
