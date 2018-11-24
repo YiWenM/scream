@@ -2,10 +2,11 @@
   <div>
     <div class="detailhead">
         <h2>{{$store.state.detailTitle}}</h2>
-        <!-- <img :src="$store.state.detailinfo[$store.state.detailindex].productImg" alt="">
-        <p>{{$store.state.detailinfo[$store.state.detailindex].productTitle}}</p>
-        <p>{{$store.state.detailinfo[$store.state.detailindex].sellPrice}}</p> -->
+        <img :src="$store.state.detailId[1]" alt="">
+        <p>{{$store.state.detailId[2]}}</p>
+        <p>{{$store.state.detailId[3]}}</p>
     </div>
+
     <div v-for="data in detaillist" class="detailbody1">
       <div v-if="data.content.indexOf('http') < 0">
         <p>{{data.content}}</p>
@@ -25,7 +26,7 @@
      </ul>
     </div>
 
-    <div class="assess">
+    <div class="assess" v-if="assesslist">
       <h2>
         评价晒图
       </h2>
@@ -59,6 +60,14 @@
       </ul>
       <h4>需要帮助<span style="color:red">周一至周五9:00~18:30</span></h4>
     </div>
+
+    <footer>
+      <ul>
+        <li></li>
+        <li>加入购物车</li>
+        <li>立即购买</li>
+      </ul>
+    </footer>
   </div>
 </template>
 
@@ -86,11 +95,11 @@ export default {
   },
 
   mounted(){
-
+    this.$store.commit("put",false);
     axios.get(`/itemdetail/skuInfos/${this.$route.params.id}?_=1542783587691`).then(res=>{
       // console.log(res.data.data.skuAttrPairs);
       this.datalist = res.data.data.skuAttrPairs;
-      console.log(this.datalist)
+      // console.log(this.datalist)//尺寸
     }).catch(error=>{
       console.log(error);
     })
@@ -104,14 +113,15 @@ export default {
       this.guesslist = res.data.data.skuInLists;
 
 
-      this.$store.commit("detailId",this.idlist.parentProductId);
-
+      this.$store.commit("detailId",[this.idlist.parentProductId,this.idlist.productImg,this.idlist.productTitle,this.idlist.sellPrice]);
 
 
       //从store拿到ID，找详细信息
-      axios.get(`/itemdetail/spuInfos/${this.$store.state.detailId}?_=1542798329745`).then(res=>{
+      axios.get(`/itemdetail/spuInfos/${this.$store.state.detailId[0]}?_=1542798329745`).then(res=>{
         this.detaillist = res.data.data.itemDetailIntroVoList;
         this.assesslist = res.data.data.productCommentList;
+        // console.log(this.detaillist);//中间的详情
+        // console.log(this.assesslist);//评论
      
       }).catch(error=>{
         console.log(error);
@@ -122,11 +132,10 @@ export default {
      console.log(error);
     })
    
-  }
-  // beforeDestroy(){
-  //   this.$store.commit("put",true);
-  // }
-  
+  },
+  beforeDestroy(){
+    this.$store.commit("put",true);
+  } 
 }
 </script>
 
@@ -161,7 +170,8 @@ export default {
     margin-top: -.1rem;
     img{
       width:100%;
-      height:2.5rem;
+      padding-top: .15rem;
+      padding-bottom: .15rem;
     }
     p{
       text-align: center;
@@ -288,6 +298,32 @@ export default {
       text-indent: .2rem;
       span{
         margin-left: .1rem;
+      }
+    }
+  }
+
+  footer{
+    width:100%;
+    position:fixed;
+    bottom:0;
+    left:0;
+    ul{
+      background: #FFF;
+      height:.5rem;
+      line-height: .5rem;
+      display:flex;
+      justify-content:space-around;
+      li{
+        font-size: .16rem;
+        text-align: center;
+        width:33%;
+        cursor:pointer;
+      }
+      li:nth-of-type(2){
+        background: #f5f5f5;
+      }
+      li:nth-of-type(3){
+        background: #fff100;
       }
     }
   }

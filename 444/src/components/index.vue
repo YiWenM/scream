@@ -1,6 +1,6 @@
 <template>
-  <div v-if="$store.state.isShow">
-  	<ul class="footer">
+  <div>
+  	<ul class="footer" v-if="$store.state.isShow">
   		<router-link tag="li" activeClass="active" to="/page/index">
   			<p class="iconfont">&#xe62a;</p>
   			<p>首页</p>

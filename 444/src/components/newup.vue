@@ -3,8 +3,8 @@
     <ul class="content">
       <li v-for="data in datalist" @click="handleClick(data.productId)">
         <img :src="data.productImg" alt="">
-        <p>{{data.productTitle}}</p>
-        <p>￥{{data.sellPrice}}</p>
+        <p> {{data.productTitle}} </p>
+        <p> ￥{{data.sellPrice}}  </p>
       </li>
     </ul>
   </div>

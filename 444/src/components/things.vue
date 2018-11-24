@@ -48,6 +48,9 @@ export default {
     detail(data){
     	this.$router.push('/detail/'+data);
     }
+  },
+  beforeDestroy(){
+    this.$store.commit("put",true);
   }
 }
 </script>
