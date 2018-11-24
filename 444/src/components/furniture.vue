@@ -29,7 +29,7 @@
   	     		      </div>
   	     		    </div>
   	     		  </div>  
-     		      <p class="all">查看全部<i class="iconfont ">&#xe603;</i></p> 
+                 <p class="all"  ><span @click="handleClick(data.moduleContent.id)">查看全部</span><i class="iconfont ">&#xe603;</i></p>
   	     	   </div>
   	        </div>
   	 </div>
@@ -51,8 +51,8 @@
 	  	     	<div class="text">{{pros.productName}}</div>
 	  	     	<div class="text">￥{{pros.sellPrice}}</div>
   	     	</div>
-  	      <p class="all"><span>查看全部</span><i class="iconfont ">&#xe603;</i></p> 
-  	     </div>
+         </div>
+             <p class="all" ><span @click="handleClick(data.moduleContent.id)">查看全部</span><i class="iconfont ">&#xe603;</i></p>
   	  </div>
   	 <br>
   	 <br>
@@ -110,6 +110,11 @@ export default {
   methods:{
     detail(data){
       this.$router.push('/detail/'+data);
+    },
+     handleClick(data){
+      console.log(data);
+      this.$router.push('/more/'+data);
+      this.$store.commit('put',false)
     }
   }
 }
@@ -167,6 +172,7 @@ export default {
  	padding: 0;
  	margin: 0;
  	span{
+  background: #000;
  	display: inline-block;
  	margin-top: .2rem;
  	font-size: .12rem;

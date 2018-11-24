@@ -98,7 +98,6 @@ const store = new Vuex.Store({
         state.detailindex = payload;
     },
    	 	bars(state,payload){
-      /*  console.log(  payload)*/
             state.barList=payload;
             var mySwiper = new Swiper ('.swiper', {
                 slidesPerView: 3,
@@ -116,9 +115,11 @@ const store = new Vuex.Store({
            state.barList=[...state.barList,...payload]; 
         },
         homebar(state,payload){
+
             state.homeList = payload;
         },
         homeList(state,payload){
+          console.log(payload)
             state.homeList2 = payload;
         },
         funiturebar(state,payload){
@@ -162,7 +163,9 @@ const store = new Vuex.Store({
           state.doneList = payload;
         },
         done(state,payload){
-          state.doneList.push(payload) ;
+          if ( state.doneList.indexOf(payload)===-1) {
+             state.doneList.push(payload) ;
+          }
         },
       categoryIndex(state,payload){
           state.category = payload;

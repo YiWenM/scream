@@ -33,9 +33,7 @@
                 <!--  <div>
      		           <p class="all">查看全部<i class="iconfont ">&#xe603;</i></p>   	
                  </div> -->
-              <div>
-     		         <p class="all" @click="handleClick(data.moduleContent.id)">查看全部<i class="iconfont ">&#xe603;</i></p>
-              </div>
+     		         <p class="all" @click="handleClick(data.moduleContent.id)"><span>查看全部</span><i class="iconfont ">&#xe603;</i></p>
   	        </div>
           </div>
   	 </div>
@@ -62,11 +60,6 @@
   		imgList:[],
   		num:11
       
-    }
-  },
-  methods : {
-    handleClick(){
-        
     }
   },
 
