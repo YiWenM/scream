@@ -1,4 +1,4 @@
-<template>
+kil<template>
   <div>
   <div id="titles"></div>
   	<h2>购物车</h2>
@@ -47,7 +47,7 @@ export default {
 		console.log(this.datalist);
 		
 		//把信息带到详情页：
-		this.$store.commit("detailinfo",this.datalist);
+		this.$store.commit("detailinfo",[this.datalist]);
 
 	}).catch(error=>{
 		console.log(error);
@@ -123,17 +123,20 @@ export default {
 		li{
 			float:left;
 			width:50%;
-			height:3rem;
+			height:2.8rem;
 			padding:.2rem;
 			border-bottom: 1px solid #ccc;
 			
 			img{
 				width:100%;
-				height:1.6rem;
 				margin-bottom: .1rem;
 			}
 			p{
 				color:#aaa;
+				line-height: .25rem;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
 				span{
 					color:black;
 				}

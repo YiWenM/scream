@@ -1,6 +1,11 @@
 <template>
+<<<<<<< HEAD
   <div class="box">
   	<ul class="footer" v-if="$store.state.isShow" >
+=======
+  <div>
+  	<ul class="footer" v-if="$store.state.isShow">
+>>>>>>> 9563e65c956e3ff712a23e830b4c33ab071dab90
   		<router-link tag="li" activeClass="active" to="/page/index">
   			<p class="iconfont">&#xe62a;</p>
   			<p>首页</p>
