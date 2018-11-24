@@ -12,6 +12,8 @@ import cart from '../components/cart'
 import sortdetail from '../components/sortdetail'
 import inputconnect from '../components/inputconnect'
 import search from '../components/search'
+import things from '../components/things'
+import history from '../components/history'
 import sales from '../components/sales'
 import prices from '../components/prices'
 import newup from '../components/newup'
@@ -50,9 +52,17 @@ export default new Router({
              {
               path:'search',
               component:search
-             }
-         ]
-      },
+             },
+              {
+              path:'/',
+              component:history
+              }
+        ]
+     }, 
+     {
+       path:"/more/:id",
+       component:things
+     } ,   
       {
           path:'/sortdetail',
           component:sortdetail,

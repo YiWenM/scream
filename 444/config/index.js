@@ -37,9 +37,15 @@ module.exports = {
             host:"m.wowdsgn.com",
             changeOrigin:true
         },
+<<<<<<< HEAD
+        '/pages':{
+            target:" https://m.wowdsgn.com",
+            host:"m.wowdsgn.com",
+=======
         "/pages":{
             target:" https://m.wowdsgn.com",
             host:"m.wowdsgn.com/",
+>>>>>>> bbb5889da52aed8965331df36caae1b81f78e8f7
             changeOrigin:true
         }
 

@@ -59,9 +59,6 @@
       </ul>
       <h4>需要帮助<span style="color:red">周一至周五9:00~18:30</span></h4>
     </div>
-    
-
-
   </div>
 </template>
 
@@ -89,11 +86,11 @@ export default {
   },
 
   mounted(){
-    
 
     axios.get(`/itemdetail/skuInfos/${this.$route.params.id}?_=1542783587691`).then(res=>{
       // console.log(res.data.data.skuAttrPairs);
       this.datalist = res.data.data.skuAttrPairs;
+      console.log(this.datalist)
     }).catch(error=>{
       console.log(error);
     })
@@ -105,7 +102,7 @@ export default {
       this.idlist = res.data.data.skuInLists[0];
   
       this.guesslist = res.data.data.skuInLists;
-      console.log(this.guesslist[0].productId);
+
 
       this.$store.commit("detailId",this.idlist.parentProductId);
 
@@ -113,11 +110,9 @@ export default {
 
       //从store拿到ID，找详细信息
       axios.get(`/itemdetail/spuInfos/${this.$store.state.detailId}?_=1542798329745`).then(res=>{
-        // console.log(res.data.data.itemDetailIntroVoList[0].content);
         this.detaillist = res.data.data.itemDetailIntroVoList;
         this.assesslist = res.data.data.productCommentList;
-        // console.log(this.assesslist);
-
+     
       }).catch(error=>{
         console.log(error);
       })

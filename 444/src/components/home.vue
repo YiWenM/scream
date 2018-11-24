@@ -8,12 +8,12 @@
   	 <div v-for="data in $store.state.homeList"class="bars">
 	  	 	 <p class="words" v-if="data.moduleName">{{data.moduleName}}</p>
 	  	 	  <p class="woord" v-if="data.moduleDescription">{{data.moduleDescription}}</p>
-  	        <div  v-if="data.moduleContent.banners&& data.moduleContent.banners.length===1" >
+  	        <div  v-if="data.moduleContent.banners&& data.moduleContent.banners.length===1" @click="detail(data.moduleContent.banners[0].id)">
 	  	      <img v-if="data.moduleContent.banners[0]" :src="data.moduleContent.banners[0].bannerImgSrc" alt="">
   	        </div>
   	     <div v-if="data.moduleContent.products">
   	     <ul  v-if=" data.moduleContent.products.length<6">
-  	     	<li v-for="pros,index in data.moduleContent.products"v-if="index<3">
+  	     	<li v-for="pros,index in data.moduleContent.products"v-if="index<3" @click="detail(pros.productId)">
 	  	     	<img :src="pros.productImg" alt="">
 	  	     	<p>{{pros.productName}}</p>
 	  	     	<p>￥{{pros.sellPrice}}</p>
@@ -22,7 +22,7 @@
   	     	<div v-if=" data.moduleContent.products.length>6" >
   	     		<div class="swiper-container">
   	     		    <div class="swiper-wrapper">
-  	     		      <div class="swiper-slide" v-for="pros in data.moduleContent.products" :key="pros.id">
+  	     		      <div class="swiper-slide" v-for="pros in data.moduleContent.products" :key="pros.id" @click="detail(pros.productId)">
      		        	 <img :src="pros.productImg" alt="">
 	  	     	          <p >{{pros.productName}}</p>
 	  	     	          <p >￥{{pros.sellPrice}}</p>
@@ -95,7 +95,7 @@ export default {
  	      this.imgList = res.data.data.modules[0].moduleContent.banners;
 	  	    this.$nextTick(()=>{
 				var mySwiper = new Swiper ('.swiper-container', {
-				    loop: true,
+             loop: false,
 				    pagination: {
 				      el: '.swiper-pagination',
 				     }
@@ -106,6 +106,11 @@ export default {
  	    Promise.all([axios.get('/v2/page?pageId=1&tabId=1&_=1542803963876')]).then(res=>{
  	    	Indicator.close();
  	    })
+  },
+  methods:{
+    detail(data){
+      this.$router.push('/detail/'+data);
+    }
   }
 }
 </script>
