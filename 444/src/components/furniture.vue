@@ -29,7 +29,7 @@
   	     		      </div>
   	     		    </div>
   	     		  </div>  
-                 <p class="all"  ><span @click="handleClick(data.moduleContent.id)">查看全部</span><i class="iconfont ">&#xe603;</i></p>
+                 <p class="all"  @click="handleClick(data.moduleContent.id)"><span>查看全部</span><i class="iconfont ">&#xe603;</i></p>
   	     	   </div>
   	        </div>
   	 </div>
