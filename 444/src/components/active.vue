@@ -17,7 +17,7 @@
 	  	     	<div class="text">{{pros.productName}}</div>
 	  	     	<div class="text">￥{{pros.sellPrice}}</div>
   	     	</div>
-             <p class="all" ><span @click="handleClick(data.moduleContent.id)">查看全部</span><i class="iconfont ">&#xe603;</i></p>
+             <p class="all" @click="handleClick(data.moduleContent.id)"><span>查看全部</span><i class="iconfont ">&#xe603;</i></p>
         </div>
   	  </div>
   	 <br>

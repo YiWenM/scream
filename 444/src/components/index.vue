@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div class="box">
   	<ul class="footer" v-if="$store.state.isShow" >
   		<router-link tag="li" activeClass="active" to="/page/index">
   			<p class="iconfont">&#xe62a;</p>
@@ -63,23 +63,24 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+div.box{
    .footer{
-   	width: 100%;
+    width: 100%;
     height: 0.5rem;
     position: fixed;
     display: flex;
     margin: 0 auto;
     bottom: 0;
+    left: 0;
     background: #fff;
     border-top: 1px solid #f5f5f5;
-    z-index: 999; 
+    z-index: 20000; 
     padding-top: .05rem;
     li{
-    	flex: 1;
+      flex: 1;
       color: #ccc;
-    	text-align: center;
-    	height: 100%;
+      text-align: center;
+      height: 100%;
       .iconfont{
          font-weight: bold;
        }
@@ -92,6 +93,7 @@ export default {
       }
     }
   }
+}
    .active{
     p{
       color: #000;

@@ -52,7 +52,8 @@
 	  	     	<div class="text">￥{{pros.sellPrice}}</div>
   	     	</div>
          </div>
-             <p class="all" ><span @click="handleClick(data.moduleContent.id)">查看全部</span><i class="iconfont ">&#xe603;</i></p>
+         <hr>
+             <p class="all" @click="handleClick(data.moduleContent.id)"><span >查看全部</span><i class="iconfont ">&#xe603;</i></p>
   	  </div>
   	 <br>
   	 <br>
@@ -172,10 +173,9 @@ export default {
  	padding: 0;
  	margin: 0;
  	span{
-  background: #000;
  	display: inline-block;
- 	margin-top: .2rem;
  	font-size: .12rem;
+  padding-bottom: .1rem;
  	padding-top: .1rem;
  	}
 
