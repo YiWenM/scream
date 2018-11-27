@@ -62,7 +62,7 @@ export default new Router({
      {
        path:"/more/:id",
        component:things
-     } ,   
+     },   
       {
           path:'/sortdetail',
           component:sortdetail,
