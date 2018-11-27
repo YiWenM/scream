@@ -50,18 +50,13 @@ export default {
     	this.$router.push('/detail/'+data);
     }
   },
-<<<<<<< HEAD
   computed:{
     lists(){
       return this.list
     }
   },
   beforeDestroy(){
-    this.$store.commit('put',true)
-=======
-  beforeDestroy(){
     this.$store.commit("put",true);
->>>>>>> 9563e65c956e3ff712a23e830b4c33ab071dab90
   }
 }
 </script>
