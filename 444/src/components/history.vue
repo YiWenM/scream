@@ -28,6 +28,19 @@ export default {
    	getdata(data){
        this.connent = data;
        this.$store.commit('done',data);
+       this.$store.commit('keyword',window.encodeURIComponent(data));
+      axios.get(`/product/search?keyword=${window.encodeURIComponent(data)}&sort=onShelfTime&order=desc&currentPage=1&_=${new Date().getTime()}`  ).then(res=>{
+         if (res.data.data.products.length ===0) {
+           axios.get(`/recommend/search?_=${new Date().getTime()}`).then(res=>{
+             console.log(res.data.data)
+              this.$store.commit('search2',res.data.data);
+           })
+         }else{
+           this.$store.commit('search',res.data.data.products); 
+
+         }
+           this.$router.push('/view/search')    
+      })
    	},
    	deldata(){
    		 this.$store.commit('delDone',[])

@@ -23,7 +23,7 @@ html{font-size: 26.6666667vw}
  img{display: inline-block}
  ul,li{list-style: none}
  a{text-decoration:none;}
- body,html{width: 100%}
+ body,html{width: 100%,;background:#f5f5f5;}
  .clear{content:'';display: block;clear: both;}
 
 </style>

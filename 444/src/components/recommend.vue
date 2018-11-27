@@ -61,11 +61,6 @@
       
     }
   },
-  methods : {
-    handleClick(){
-        
-    }
-  },
 
   components: {
     'swipe': Swipe,

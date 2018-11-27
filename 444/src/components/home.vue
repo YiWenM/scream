@@ -29,9 +29,9 @@
   	     		      </div>
   	     		    </div>
   	     		  </div>  
-     		      <p class="all">查看全部<i class="iconfont ">&#xe603;</i></p> 
-  	     	   </div>
-  	        </div>
+                 <p class="all"  @click="handleClick(data.moduleContent.id)"><span>查看全部</span><i class="iconfont ">&#xe603;</i></p>
+             </div>
+            </div>
   	 </div>
   	  <div v-for="data in $store.state.homeList2" class="homeList2" v-if="data.moduleContent.banners&& data.moduleContent.banners.length===3"> 
   	  	<div class="homeList">
@@ -46,12 +46,12 @@
   	  	 <p v-if="data.moduleName">{{data.moduleName}}</p>
   	  	 <div v-if="data.moduleDescription" class="desc">{{data.moduleDescription}}</div>
   	     <div class="bar">
-  	     	<div v-for="pros,index in data.moduleContent.products" v-if=" data.moduleContent.products &&index<6" class="bar2">
+  	     	<div v-for="pros,index in data.moduleContent.products" v-if=" data.moduleContent.products &&index<6" class="bar2" @click="detail(pros.productId)">
 	  	     	<img :src="pros.productImg" alt="">
 	  	     	<div class="text">{{pros.productName}}</div>
 	  	     	<div class="text">￥{{pros.sellPrice}}</div>
   	     	</div>
-  	      <p class="all"><span>查看全部</span><i class="iconfont ">&#xe603;</i></p> 
+             <p class="all" @click="handleClick(data.moduleContent.id)"><span >查看全部</span><i class="iconfont ">&#xe603;</i></p>
   	     </div>
   	  </div>
   	 <br>
@@ -110,6 +110,11 @@ export default {
   methods:{
     detail(data){
       this.$router.push('/detail/'+data);
+    },
+     handleClick(data){
+      console.log(data);
+      this.$router.push('/more/'+data);
+      this.$store.commit('put',false)
     }
   }
 }
@@ -167,7 +172,7 @@ export default {
  	margin: 0;
  	span{
  	display: inline-block;
- 	margin-top: .2rem;
+  padding-bottom: .1rem;
  	font-size: .12rem;
  	padding-top: .1rem;
  	}

@@ -39,11 +39,12 @@ export default {
         var Reg=/[0-9A-Za-z]*/;
          var keyword = '';
         if (!Reg.test(data)) {
-      	  keyword = window.encodeURIComponent(data);
+          keyword = window.decodeURIComponent(data);
         }else{
            keyword = data;
         }
         this.$store.commit('keyword',keyword)
+        this.content = window.encodeURIComponent(this.$store.state.keyword)
       	axios.get(`/product/search?keyword=${keyword}&sort=onShelfTime&order=desc&currentPage=1&_=${new Date().getTime()}`  ).then(res=>{
           if (res.data.data.products.length ===0) {
             axios.get(`/recommend/search?_=${new Date().getTime()}`).then(res=>{

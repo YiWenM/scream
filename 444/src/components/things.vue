@@ -5,7 +5,7 @@
   	      	<img src="../assets/1.jpg" alt="">
   	      </div>
   	      <ul  class="products">
-  	         <li v-for="data in list" class="list" @click="detail(data.productId)">
+  	         <li v-for="data in lists" class="list" @click="detail(data.productId)">
   	             <div>
   	               <img :src="data.productImg" alt="">
   	             </div>
@@ -30,27 +30,38 @@ export default {
   		loading:false
   	}
   },
-  mounted(){
-  	axios.get(`/pages/productGroup/${this.$route.params.id}/products?pageNumbe${this.page}=1&_=1542961847062`).then(res=>{
+ /* mounted(){
+  	axios.get(`/pages/productGroup/${this.$route.params.id}/products?pageNumbe=${this.page}&_=${new Date().getTime()}`).then(res=>{
   		this.list = res.data.data.products
   	})
-  } ,
+  } ,*/
+  // https://m.wowdsgn.com/pages/productGroup/10013/products?pageNumber=3&_=1543041775186
   methods:{
   	loadMore(){
-       this.page = this.page+1;
-       axios.get(`/pages/productGroup/${this.$route.params.id}/products?pageNumbe${this.page}=1&_=1542961847062`).then(res=>{
+       axios.get(`/pages/productGroup/${this.$route.params.id}/products?pageNumber=${this.page}&_=${new Date().getTime()}`).then(res=>{
+        this.page++
        	if (res.data.length===0) {
        		this.loading =true;
        	}
-  		this.list = [...res.data.data.products,...this.list]
+  		   this.list =[...this.list,...res.data.data.products] 
   	  })
     },
     detail(data){
     	this.$router.push('/detail/'+data);
     }
   },
+<<<<<<< HEAD
+  computed:{
+    lists(){
+      return this.list
+    }
+  },
+  beforeDestroy(){
+    this.$store.commit('put',true)
+=======
   beforeDestroy(){
     this.$store.commit("put",true);
+>>>>>>> 9563e65c956e3ff712a23e830b4c33ab071dab90
   }
 }
 </script>

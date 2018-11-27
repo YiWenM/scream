@@ -34,8 +34,8 @@ export default new Router({
       	component:login
      },
      {
-      	path:'/news',
-      	component:news
+      	path:'/login',
+      	component:cart
      },
      {
       	path:'/myself',

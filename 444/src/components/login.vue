@@ -44,7 +44,8 @@ export default {
 	axios.get(`/recommend/cart?currentPage=${this.current}&_=1542777146544`).then(res=>{
 
 		this.datalist = res.data.data;
-		console.log(this.datalist)
+		console.log(this.datalist);
+		
 		//把信息带到详情页：
 		this.$store.commit("detailinfo",[this.datalist]);
 
